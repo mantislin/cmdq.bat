@@ -1,0 +1,15 @@
+::JJ-Get.exe -xml -i av15428084
+::JJ-Get.exe -xml -i av15393263
+::JJ-Get.exe -xml -i av15064125
+::JJ-Get.exe -xml -i av15296790
+::JJ-Get.exe -xml -i av15072321
+::JJ-Get.exe -xml -i av15301258
+::shutdown -h
+::youtube-dl "https://www.youtube.com/watch?v=gSor2q5QT8w" -c -f "bestvideo[ext=mp4]+bestaudio[ext=m4a]" --proxy "http://127.0.0.1:1080" --socket-timeout 30
+::youtube-dl "https://www.youtube.com/watch?v=2QmdVY457e0" -c -f "bestvideo[ext=mp4]+bestaudio[ext=m4a]" --proxy "http://127.0.0.1:1080" --socket-timeout 30
+you-get.exe -c "D:\tdd\Downlods\cookies.txt" --format=flv "https://www.bilibili.com/video/av15428084"
+you-get.exe -c "D:\tdd\Downlods\cookies.txt" --format=flv "https://www.bilibili.com/video/av15393263"
+you-get.exe -c "D:\tdd\Downlods\cookies.txt" --format=flv "https://www.bilibili.com/video/av15064125"
+you-get.exe -c "D:\tdd\Downlods\cookies.txt" --format=flv "https://www.bilibili.com/video/av15296790"
+you-get.exe -c "D:\tdd\Downlods\cookies.txt" --format=flv "https://www.bilibili.com/video/av15072321"
+you-get.exe -c "D:\tdd\Downlods\cookies.txt" --format=flv "https://www.bilibili.com/video/av15301258"
