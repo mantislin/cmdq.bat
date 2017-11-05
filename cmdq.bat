@@ -6,7 +6,7 @@
 chcp 65001 >nul 2>nul
 setlocal enabledelayedexpansion
 
-set "timepause=5"
+set "timepause=10"
 set "cmmndsreexecuted=" :: commands failed multiple times
 set "cmmndLast=-1"
 
@@ -31,7 +31,7 @@ for /f "usebackq tokens=* delims=" %%a in ("%listSF%") do (
     )
 )
 
-:: -- When no unexecuted command exists, try to get failed command to re-execute
+:: -- When no unexecuted command exists, try to get the top failed command to re-execute
 if "!cmmnd!" == "" (
     for /f "usebackq tokens=* delims=" %%a in ("%listSF%") do (
         if "!cmmnd!" == "" (
@@ -42,7 +42,11 @@ if "!cmmnd!" == "" (
                     set "cmmnd=!line:~4!"
                     set "skip=0"
 
+                    :: here
                     for /f "usebackq delims=////" %%b in ('!cmmndsreexecuted!') do (
+                        if !skip! equ 0 if "%%~b" == "!cmmnd!" set "skip=1"
+                    )
+                    for /f "delims=////" %%b in ("!cmmndsreexecuted!") do (
                         if !skip! equ 0 if "%%~b" == "!cmmnd!" set "skip=1"
                     )
 
@@ -79,17 +83,21 @@ if "!cmmnd!" == "" (
 if not "!cmmnd!" == "" (
     echo/
     echo/:: -- ==============================
-    echo/call !cmmnd!
+    echo/!cmmnd!
     if /i "!cmmnd:~0,8!" == "robocopy" (
         call !cmmnd!
-        if not errorlevel 8 (
+        set "errlvl=!errorlevel!"
+
+        if !errlvl! geq 8 (
             call :annotateExecutedLine %listSF%////%annoSignSucc%////!cmmnd!
         ) else (
             call :annotateExecutedLine %listSF%////%annoSignFail%////!cmmnd!
         )
     ) else (
         call !cmmnd!
-        if not errorlevel 1 (
+        set "errlvl=!errorlevel!"
+
+        if !errlvl! equ 0 (
             call :annotateExecutedLine %listSF%////%annoSignSucc%////!cmmnd!
         ) else (
             call :annotateExecutedLine %listSF%////%annoSignFail%////!cmmnd!
@@ -112,12 +120,24 @@ set "listOri="
 set "annoSign="
 set "annoSignFail=rem "
 set "cmdline="
+set "cmdlinetemp="
 
+:: here
 for /f "usebackq tokens=1,2,* delims=////" %%a in ('%*') do (
     set "listOri=%%~a"
     set "annoSign=%%~b"
     set "cmdline=%%~c"
 )
+for /f "tokens=1,2,* delims=////" %%a in ("%*") do (
+    set "cmdlinetemp=%%~c"
+)
+if not "!cmdline!" == "!temp!" (
+    for /f "usebackq" %%a in (`echo/"%cmdline%" ^| find /c /i "="`) do (set "count0=%%~a")
+    for /f "usebackq" %%a in (`echo/"%cmdlinetemp%" ^| find /c /i "="`) do (set "count1=%%~a")
+    if !count0! lss !count1! set "cmdline=%cmdlinetemp%"
+)
+
+set "cmdlineorig=!cmdline!"
 if not "!cmdline!" == "" call set "cmdline=!cmdline!"
 
 call :fileN "fileN" "!listOri!"
@@ -128,25 +148,40 @@ for /f "usebackq tokens=* delims=" %%a in ("!listOri!") do (
     call set "readline=%%~a"
 
     if "%%~a" == "" (
-        echo/empty line never found^!
-        echo/empty line never found^!
-        echo/empty line never found^!
-        echo/empty line never found^!
-        echo/empty line never found^!
-        echo/empty line never found^!
+
+        echo/Empty line never found^!
+        echo/Empty line never found^!
+        echo/Empty line never found^!
+        echo/Empty line never found^!
+        echo/Empty line never found^!
+        echo/Empty line never found^!
+
         if !linecount! leq 0 (
             echo/%%~a>"%listTmpSF%"
         ) else (
             echo/%%~a>>"%listTmpSF%"
         )
-    ) else if "!readline!" == "!cmdline!" (
+
+    ) else if "!readline!" == "!cmdlineorig!" (
+
         ::mark unexecuted command
         if !linecount! leq 0 (
             echo/!annoSign!%%~a>"%listTmpSF%"
         ) else (
             echo/!annoSign!%%~a>>"%listTmpSF%"
         )
-    ) else if "!readline!" == "%annoSignFail%!cmdline!" (
+
+    ) else if "!readline!" == "!cmdline!" (
+
+        ::mark unexecuted command
+        if !linecount! leq 0 (
+            echo/!annoSign!%%~a>"%listTmpSF%"
+        ) else (
+            echo/!annoSign!%%~a>>"%listTmpSF%"
+        )
+
+    ) else if "!readline!" == "%annoSignFail%!cmdlineorig!" (
+
         ::mark failed command
         set "cmmndtemp=%%~a"
         set "cmmndtemp=!cmmndtemp:~4!"
@@ -155,7 +190,20 @@ for /f "usebackq tokens=* delims=" %%a in ("!listOri!") do (
         ) else (
             echo/!annoSign!!cmmndtemp!>>"%listTmpSF%"
         )
+
+    ) else if "!readline!" == "%annoSignFail%!cmdline!" (
+
+        ::mark failed command
+        set "cmmndtemp=%%~a"
+        set "cmmndtemp=!cmmndtemp:~4!"
+        if !linecount! leq 0 (
+            echo/!annoSign!!cmmndtemp!>"%listTmpSF%"
+        ) else (
+            echo/!annoSign!!cmmndtemp!>>"%listTmpSF%"
+        )
+
     ) else (
+
         ::mark anything other lines
         if !linecount! leq 0 (
             echo/%%~a>"%listTmpSF%"

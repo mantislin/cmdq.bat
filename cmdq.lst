@@ -1,15 +1,4 @@
-::JJ-Get.exe -xml -i av15428084
-::JJ-Get.exe -xml -i av15393263
-::JJ-Get.exe -xml -i av15064125
-::JJ-Get.exe -xml -i av15296790
-::JJ-Get.exe -xml -i av15072321
-::JJ-Get.exe -xml -i av15301258
-::shutdown -h
-::youtube-dl "https://www.youtube.com/watch?v=gSor2q5QT8w" -c -f "bestvideo[ext=mp4]+bestaudio[ext=m4a]" --proxy "http://127.0.0.1:1080" --socket-timeout 30
-::youtube-dl "https://www.youtube.com/watch?v=2QmdVY457e0" -c -f "bestvideo[ext=mp4]+bestaudio[ext=m4a]" --proxy "http://127.0.0.1:1080" --socket-timeout 30
-you-get.exe -c "D:\tdd\Downlods\cookies.txt" --format=flv "https://www.bilibili.com/video/av15428084"
-you-get.exe -c "D:\tdd\Downlods\cookies.txt" --format=flv "https://www.bilibili.com/video/av15393263"
-you-get.exe -c "D:\tdd\Downlods\cookies.txt" --format=flv "https://www.bilibili.com/video/av15064125"
-you-get.exe -c "D:\tdd\Downlods\cookies.txt" --format=flv "https://www.bilibili.com/video/av15296790"
-you-get.exe -c "D:\tdd\Downlods\cookies.txt" --format=flv "https://www.bilibili.com/video/av15072321"
-you-get.exe -c "D:\tdd\Downlods\cookies.txt" --format=flv "https://www.bilibili.com/video/av15301258"
+you-get.exe -c "D:\tdd\Downloads\cookies.txt" -t 10 --no-caption --no-proxy "https://www.bilibili.com/video/av106"
+youtube-dl.exe "https://www.youtube.com/watch?v=yXePweUiRRE" -c -f "bestvideo[ext=mp4]+bestaudio[ext=m4a]" --cookies "D:\tdd\Downloads\cookies.txt" --proxy "socks5://127.0.0.1:10082" --socket-timeout 30
+you-get.exe -c "D:\tdd\Downloads\cookies.txt" -t 10 --no-proxy "https://www.bilibili.com/video/av15414175" ::RWBY第五季01
+optipng.exe -o7 -strip all -out "%~sdp0ANIME-PICTURES.NET_-_509989-1114x766-fate+%%28series%%29-fateapocrypha-jeanne+d%%26%%2339%%3Barc+%%28fateapocrypha%%29-mutugi-long+hair-single.png" "%~sdp0ANIME-PICTURES.NET_-_509989-1114x766-fate+%%28series%%29-fateapocrypha-jeanne+d%%26%%2339%%3Barc+%%28fateapocrypha%%29-mutugi-long+hair-single.png"
