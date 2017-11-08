@@ -87,6 +87,8 @@ if not "!cmmnd!" == "" (
     if /i "!cmmnd:~0,8!" == "robocopy" (
         call !cmmnd!
         set "errlvl=!errorlevel!"
+        echo/
+        echo/---- ERRORLEVEL !errlvl!
 
         if !errlvl! geq 8 (
             call :annotateExecutedLine %listSF%////%annoSignSucc%////!cmmnd!
@@ -96,6 +98,8 @@ if not "!cmmnd!" == "" (
     ) else (
         call !cmmnd!
         set "errlvl=!errorlevel!"
+        echo/
+        echo/---- ERRORLEVEL !errlvl!
 
         if !errlvl! equ 0 (
             call :annotateExecutedLine %listSF%////%annoSignSucc%////!cmmnd!
@@ -128,10 +132,19 @@ for /f "usebackq tokens=1,2,* delims=////" %%a in ('%*') do (
     set "annoSign=%%~b"
     set "cmdline=%%~c"
 )
-for /f "tokens=1,2,* delims=////" %%a in ("%*") do (
+set "argsAll=%*"
+set "argsAll=!argsAll:^^=^!"
+set "argsAll=!argsAll:^)=)!"
+set "argsAll=!argsAll:^=^^!"
+set "argsAll=!argsAll:)=^)!"
+for /f "tokens=1,2,* delims=////" %%a in ("!argsAll!") do (
     set "cmdlinetemp=%%~c"
 )
-if not "!cmdline!" == "!temp!" (
+set "cmdline=!cmdline:^^=^!"
+set "cmdline=!cmdline:^)=)!"
+set "cmdline=!cmdline:^=^^!"
+set "cmdline=!cmdline:)=^)!"
+if not "!cmdline!" == "!cmdlinetemp!" (
     for /f "usebackq" %%a in (`echo/"%cmdline%" ^| find /c /i "="`) do (set "count0=%%~a")
     for /f "usebackq" %%a in (`echo/"%cmdlinetemp%" ^| find /c /i "="`) do (set "count1=%%~a")
     if !count0! lss !count1! set "cmdline=%cmdlinetemp%"
@@ -146,6 +159,10 @@ set "linecount=0"
 
 for /f "usebackq tokens=* delims=" %%a in ("!listOri!") do (
     call set "readline=%%~a"
+    set "readline=!readline:^^=^!"
+    set "readline=!readline:^)=)!"
+    set "readline=!readline:^=^^!"
+    set "readline=!readline:)=^)!"
 
     if "%%~a" == "" (
 

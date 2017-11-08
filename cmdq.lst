@@ -1,4 +1,7 @@
-you-get.exe -c "D:\tdd\Downloads\cookies.txt" -t 10 --no-caption --no-proxy "https://www.bilibili.com/video/av106"
-youtube-dl.exe "https://www.youtube.com/watch?v=yXePweUiRRE" -c -f "bestvideo[ext=mp4]+bestaudio[ext=m4a]" --cookies "D:\tdd\Downloads\cookies.txt" --proxy "socks5://127.0.0.1:10082" --socket-timeout 30
-you-get.exe -c "D:\tdd\Downloads\cookies.txt" -t 10 --no-proxy "https://www.bilibili.com/video/av15414175" ::RWBY第五季01
-optipng.exe -o7 -strip all -out "%~sdp0ANIME-PICTURES.NET_-_509989-1114x766-fate+%%28series%%29-fateapocrypha-jeanne+d%%26%%2339%%3Barc+%%28fateapocrypha%%29-mutugi-long+hair-single.png" "%~sdp0ANIME-PICTURES.NET_-_509989-1114x766-fate+%%28series%%29-fateapocrypha-jeanne+d%%26%%2339%%3Barc+%%28fateapocrypha%%29-mutugi-long+hair-single.png"
+::you-get.exe -c "D:\tdd\Downloads\cookies.txt" -t 10 --no-caption --no-proxy "https://www.bilibili.com/video/av106"
+::youtube-dl.exe "https://www.youtube.com/watch?v=yXePweUiRRE" -c -f "bestvideo[ext=mp4]+bestaudio[ext=m4a]" --cookies "D:\tdd\Downloads\cookies.txt" --proxy "socks5://127.0.0.1:10082" --socket-timeout 30
+::you-get.exe -c "D:\tdd\Downloads\cookies.txt" -t 10 --no-proxy "https://www.bilibili.com/video/av15414175" ::RWBY第五季01
+::optipng.exe -o7 -strip all -out "%~sdp0ANIME-PICTURES.NET_-_509989-1114x766-fate+%%28series%%29-fateapocrypha-jeanne+d%%26%%2339%%3Barc+%%28fateapocrypha%%29-mutugi-long+hair-single.png" "%~sdp0ANIME-PICTURES.NET_-_509989-1114x766-fate+%%28series%%29-fateapocrypha-jeanne+d%%26%%2339%%3Barc+%%28fateapocrypha%%29-mutugi-long+hair-single.png"
+::optipng.exe -o7 -strip all -out "46074381(1).png" "46074381(1).png"
+::optipng.exe -o7 -strip all -out "46074381[1].png" "46074381[1].png"
+::ffmpeg -y -i "最终鬼畜蓝蓝路❤😂 - 1.1(Av106,P1).flv" -vcodec copy -acodec copy -vsync passthrough -threads 4 -stats "最终鬼畜蓝蓝路❤😂 - 1.1(Av106,P1).mp4"
