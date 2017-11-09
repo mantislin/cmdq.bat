@@ -1,0 +1,3 @@
+).make .lst file could be specified, and if is not specified file, try to find "%~dpn0.lst".
+).make the loop count of the queue could be specified.
+).make the loop count of one command line could specified.
