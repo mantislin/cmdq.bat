@@ -1,0 +1,10 @@
+#!/bin/sh
+
+#git commit -m 'bugfix;; Cannot successfully match youtube-dl and you-get commands.' 'cmdq.bat' 'cmdq.lst'
+
+#git add -v "testunit.bat"
+#git commit -m 'bugfix;; 1.Fails to match command lines contain "%"
+#2.Fails to match command lines contain ")"' 'cmdq.bat' 'cmdq.lst' 'testunit.bat'
+
+git add -v mygit
+git commit -m 'mygit;;create;;create a commandline file to record commit history in file' 'mygit'
