@@ -12,7 +12,9 @@ set "cmmndLast=-1"
 
 :soc
 
-set "listSF=%~sdpn0.lst"
+::set "listSF=%~sdpn0.lst" rem Fail to load .lst file when basename is "optimizepngs"
+set "listSDP=%~sdp0"
+set "listSF=%listSDP%%~n0.lst"
 set "annoSignSucc=::"
 set "annoSignFail=rem "
 set "cmmnd="
