@@ -6,5 +6,12 @@
 #git commit -m 'bugfix;; 1.Fails to match command lines contain "%"
 #2.Fails to match command lines contain ")"' 'cmdq.bat' 'cmdq.lst' 'testunit.bat'
 
-git add -v mygit
-git commit -m 'mygit;;create;;create a commandline file to record commit history in file' 'mygit'
+#git add -v mygit
+#git commit -m 'mygit;;create;;create a commandline file to record commit history in file' 'mygit'
+#git add -v .gitignore
+#git commit -m '.gitignore;;create;;create .gitignore to ignore some test stuff' '.gitignore'
+
+#git commit -m '.gitignore;;bugfix;;failed to ignore 46074381[1].png' '.gitignore'
+#git add -v 'todolist'
+#git commit -m 'todolist;;create;;just a todolist' 'todolist'
+git commit -m 'mygit;;update' 'mygit'
